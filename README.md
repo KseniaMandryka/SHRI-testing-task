@@ -13,11 +13,6 @@ npm run test:e2e
 ```
 BUG_ID=9 npm run test
 ```
-npm run test:unit
-
-npm run test:e2e
-```
-
 
 В случае ошибки, установите 16 версию ноды:
 
