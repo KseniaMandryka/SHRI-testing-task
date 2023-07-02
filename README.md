@@ -3,12 +3,21 @@
 Запуск тестов
 
 ```
-npm install gui
-
 npm run test:unit
 
 npm run test:e2e
 ```
+
+Запуск Bug_id
+
+```
+BUG_ID=9 npm run test
+```
+npm run test:unit
+
+npm run test:e2e
+```
+
 
 В случае ошибки, установите 16 версию ноды:
 
@@ -20,7 +29,8 @@ npm run build
 npm start
 ```
 
-Все тесты запускаются и работают
+Ели тест упал с ошибкой, запустите повторно в gui.
+Все тесты запускаются и работают.
 
 ![инт тесты](https://github.com/KseniaMandryka/SHRI-testing-task/blob/master/screen/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202023-07-02%20%D0%B2%2019.31.05.png)
 
