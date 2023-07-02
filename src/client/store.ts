@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, PreloadedState } from 'redux';
 import { combineEpics, createEpicMiddleware, ofType, StateObservable } from 'redux-observable';
 import { EMPTY, from, map, mapTo, mergeMap, mergeMapTo, Observable, tap } from 'rxjs';
 import { produce } from 'immer';
@@ -43,7 +43,7 @@ export type Action =
 
 // reducer
 
-function createRootReducer(state: Partial<ApplicationState>) {
+export function createRootReducer(state: Partial<ApplicationState>, stub=false) {
     const defaultState = { ...DEFAULT_STATE, ...state };
 
     const fn = (state: ApplicationState = defaultState, action: Action): ApplicationState => produce(state, draft => {
@@ -136,18 +136,19 @@ export const rootEpic = combineEpics(
     productDetailsLoadEpic,
 );
 
-export function initStore(api: ExampleApi, cart: CartApi) {
-    const rootReducer = createRootReducer({
-        cart: cart.getState()
-    });
+export function initStore(api: ExampleApi, cart: CartApi, preloadedState?: PreloadedState<ApplicationState>) {
+  const rootReducer = createRootReducer({
+      cart: cart.getState()
+  });
 
-    const epicMiddleware = createEpicMiddleware<Action, Action, ApplicationState, EpicDeps>({
-        dependencies: { api, cart }
-    });
+  const epicMiddleware = createEpicMiddleware<Action, Action, ApplicationState, EpicDeps>({
+      dependencies: { api, cart }
+  });
 
-    const store = createStore(rootReducer, applyMiddleware(epicMiddleware));
+  const store = createStore(rootReducer, preloadedState, applyMiddleware(epicMiddleware));
 
-    epicMiddleware.run(rootEpic);
+  epicMiddleware.run(rootEpic);
 
-    return store;
+  return store;
 }
+

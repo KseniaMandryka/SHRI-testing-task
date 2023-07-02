@@ -5,3 +5,7 @@ Dockerfile
 .dockerignore
 .DS_Store
 html-report
+test
+hermione
+html-report
+screen
