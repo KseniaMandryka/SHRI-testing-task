@@ -24,13 +24,13 @@ describe("Форма отправки", () => {
   })
 
   it("Форма с валидными данными отправляется", async () => {
-    const { container, history, getByRole } = wrapWithProviders()
+    const { container, history, queryByRole } = wrapWithProviders()
     await addItemToCart({ id: 0, history, count: 1 })
     history.push("/cart")
 
-    const nameField = getByRole("textbox", { name: "Name" })
-    const phoneField = getByRole("textbox", { name: "Phone" })
-    const addressField = getByRole("textbox", { name: "Address" })
+    const nameField = queryByRole("textbox", { name: "Name" })
+    const phoneField = queryByRole("textbox", { name: "Phone" })
+    const addressField = queryByRole("textbox", { name: "Address" })
 
     await events.type(nameField, params.name)
     await events.type(phoneField, params.phone)
@@ -43,7 +43,7 @@ describe("Форма отправки", () => {
   })
 
   test("сообщение об сделанном заказе", async () => {
-    const { container, history, getByRole } = wrapWithProviders()
+    const { container, history, queryByRole } = wrapWithProviders()
     await addItemToCart({ id: 0, history, count: 1 })
     history.push("/cart")
 
@@ -53,9 +53,9 @@ describe("Форма отправки", () => {
     //   address: "Москва"
     // }
 
-    const nameField = getByRole("textbox", { name: "Name" })
-    const phoneField = getByRole("textbox", { name: "Phone" })
-    const addressField = getByRole("textbox", { name: "Address" })
+    const nameField = queryByRole("textbox", { name: "Name" })
+    const phoneField = queryByRole("textbox", { name: "Phone" })
+    const addressField = queryByRole("textbox", { name: "Address" })
 
     await events.type(nameField, params.name)
     await events.type(phoneField, params.phone)
