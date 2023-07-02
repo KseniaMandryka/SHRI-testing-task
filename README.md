@@ -20,6 +20,12 @@ npm run build
 npm start
 ```
 
+Все тесты запускаются и работают
+
+![инт тесты](https://github.com/KseniaMandryka/SHRI-testing-task/tree/master/image/image.png)
+
+
+
 
 # Домашнее задание: Автотесты
 
